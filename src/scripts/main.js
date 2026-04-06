@@ -9,8 +9,8 @@ function salaryToNumber(salary) {
 
 function sortList(items) {
   items.sort((el1, el2) => {
-    const salary1 = Number(salaryToNumber(el1.dataset.salary));
-    const salary2 = Number(salaryToNumber(el2.dataset.salary));
+    const salary1 = salaryToNumber(el1.dataset.salary);
+    const salary2 = salaryToNumber(el2.dataset.salary);
 
     return salary2 - salary1;
   });
@@ -24,7 +24,7 @@ function getEmployees(items) {
 
     obj.name = el.dataset.name;
     obj.position = el.dataset.position;
-    obj.salary = el.dataset.salary;
+    obj.salary = salaryToNumber(el.dataset.salary);
     obj.age = el.dataset.age;
 
     res.push(obj);
