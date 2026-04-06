@@ -3,21 +3,22 @@
 const list = document.querySelector('ul');
 const listEmploy = [...document.querySelectorAll('li')];
 
-function sortList(items) {
-  return items.sort((el1, el2) => {
-    const salary1 = Number(
-      el1.dataset.salary.replaceAll(',', '').replaceAll('$', ''),
-    );
+function salaryToNumber(salary) {
+  return salary.replaceAll(',', '').replaceAll('$', '');
+}
 
-    const salary2 = Number(
-      el2.dataset.salary.replaceAll(',', '').replaceAll('$', ''),
-    );
+function sortList(items) {
+  items.sort((el1, el2) => {
+    const salary1 = Number(salaryToNumber(el1.dataset.salary));
+    const salary2 = Number(salaryToNumber(el2.dataset.salary));
 
     return salary2 - salary1;
   });
+
+  list.append(...listEmploy);
 }
 
-function toObjectEmployee(items) {
+function getEmployees(items) {
   return items.reduce((res, el, i) => {
     const obj = {};
 
@@ -34,6 +35,4 @@ function toObjectEmployee(items) {
 
 sortList(listEmploy);
 
-list.append(...listEmploy);
-
-toObjectEmployee(listEmploy);
+getEmployees(listEmploy);
