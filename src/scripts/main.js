@@ -4,7 +4,7 @@ const list = document.querySelector('ul');
 const listEmploy = [...document.querySelectorAll('li')];
 
 function salaryToNumber(salary) {
-  return salary.replaceAll(',', '').replaceAll('$', '');
+  return Number(salary.replaceAll(',', '').replaceAll('$', ''));
 }
 
 function sortList(items) {
@@ -15,7 +15,7 @@ function sortList(items) {
     return salary2 - salary1;
   });
 
-  list.append(...listEmploy);
+  list.append(...items);
 }
 
 function getEmployees(items) {
